@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madhurima Dutta | Full Stack Developer</title>
+    <meta name="description" content="Explore projects built in React.js, Spring Boot, Java, and MySQL. View resume and contact me directly.">
+    <meta name="keywords" content="Full-Stack Developer, React.js, Spring Boot, Madhurima, Portfolio, Web Developer India">
+    <meta name="author" content="Madhurima Dutta">
+    <meta property="og:title" content="Madhurima - Full-Stack Portfolio" />
+    <meta property="og:description" content="Showcasing interactive applications built with modern frameworks and clean UI." />
+    <meta property="og:image" content="assets/preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 1;
+            box-sizing: border-box;
+        }
+        /*body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}*/
+
+body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
+
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .profile-img-nav {
+            width: 70px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+            background: white;
+
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex: 0 0 300px;
+        }
+
+        .about-image img {
+            width: 70%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+            
+        }
+
+        
+        /* Skills Section */
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #f8f9fa;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .experience-date {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .experience-company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #667eea;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Certifications */
+        .certifications {
+            background: #f8f9fa;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-image {
+            width: 70%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* Workshops Section */
+        .workshops {
+            background: #f8f9fa;
+        }
+
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .workshop-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .workshop-image {
+            width: 30%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .workshop-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .workshop-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Launch Button */
+.contact-launch {
+  text-align: center;
+  margin: 3rem;
+}
+#openForm {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Contact Panel */
+.contact-panel {
+  position: fixed;
+  top: 0;
+  right: -400%;
+  width: 350px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+  padding: 30px 20px;
+  transition: right 0.5s ease;
+  z-index: 1000;
+}
+.contact-panel.show {
+  right: 0;
+}
+.contact-panel h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+
+}
+/* Inputs & Textarea */
+
+.contact-panel input,
+.contact-panel textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+/* Submit Button */
+
+.contact-panel button[type="submit"] {
+  width: 100%;
+  background: #764ba2;
+  color: #fff;
+  padding: 10px;
+  font-size: 1rem;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+.contact-panel button[type="submit"]:hover {
+  background: #5d3b8e;
+}
+
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                flex: none;
+            }
+
+            .profile-img-nav {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="images/portfolio.jpg" alt="Madhurima Dutta" class="profile-img-nav">
+                <span>💻 Madhurima Dutta</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#workshops">Workshops</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🚀 Full-Stack Developer</h1>
+                <p>⚡ Java | Spring Boot | JavaScript | Python | Building Scalable Web Solutions</p>
+                <div class="hero-buttons">
+                    <a href="mailto:duttamadhurima258@gmail.com" class="btn btn-primary">📧 Hire Me</a>
+                    <a href="https://github.com/madhu900293" class="btn" target="_blank">👨‍💻 GitHub</a>
+                    <a href="https://www.linkedin.com/in/madhurima-dutta-b84094309" class="btn" target="_blank">💼
+                        LinkedIn</a>
+                    <a href="tel:+919002937982" class="btn">📞 Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">🎯 About Me</h2>
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="images/portfolio.jpg" alt="Madhurima Dutta - Full Stack Developer">
+                </div>
+                <div class="about-content">
+                    <p>Full-stack developer passionate about creating innovative, scalable web applications using
+                        Java,Spring Boot,JavaScript,Python,MySQL,H2database,Hibernate,REST APIs,Swagger,JWT
+                        Authentication. Proven track record of reducing operational costs by 30% and improving system
+                        efficiency by 40% through strategic development. Adept at solving real-world problems with
+                        clean, efficient code while collaborating effectively in Agile environments.</p>
+                    <p>Currently pursuing Computer Science Engineering at Haridwar University, I combine academic
+                        knowledge with hands-on experience to deliver impactful solutions. My expertise spans from
+                        frontend user interfaces to backend architecture, ensuring comprehensive full-stack development
+                        capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">🛠️ Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>💻 Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🎨 Frontend Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>⚙️ Backend & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Hibernate</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🗄️ Databases & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Swagger</span>
+                        <span class="skill-tag">JWT Authentication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">🚀 Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🏥 OPD Queue Management System</h3>
+                    <p>Designed queuing models reducing patient wait times by 30% and improving bed admission efficiency
+                        by 20%. Optimized medicine dispensation with 15% waste reduction through data-driven analysis.
+                    </p>
+                    <a href="https://github.com/ayushjaiswal21/Health-Care" class="project-link" target="_blank">View
+                        Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>🤖 AssessAI - Assessment Platform</h3>
+                    <p>Built AI-powered platform for automated test creation with face recognition and real-time
+                        monitoring. Reduced admin workload by 40% and improved evaluation accuracy by 30% using secure
+                        data handling.</p>
+                    <a href="https://github.com/ayushjaiswal21/Assess-Ai" class="project-link" target="_blank">View
+                        Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>🛒 E-commerce Platform</h3>
+                    <p>Full-featured e-commerce site with product listings, user authentication, and shopping cart.
+                        Integrated Razorpay for secure payments and enhanced UI with modern animations using Framer
+                        Motion.</p>
+                    <a href="https://github.com/madhu900293/online_store" class="project-link" target="_blank">View
+                        Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>☁️ Google Drive API Integration</h3>
+                    <p>Developed automation pipeline for seamless video content upload to Google Drive. Structured
+                        request handling for metadata and binary files, showcasing API expertise and cloud storage
+                        workflows.</p>
+                    <a href="https://github.com/madhu900293/Google_Drive_Access_API" class="project-link"
+                        target="_blank">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">💼 Professional Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">🏢 Full Stack Developer Intern</div>
+                    <div class="experience-date">Feb 2025 - Apr 2025</div>
+                </div>
+                <div class="experience-company">UptoSkills - HRMS (Human Resource Management System)</div>
+                <p>Developed comprehensive HR management system handling payroll, leave, and data dashboards.
+                    Successfully migrated legacy systems with modern tech stack, ensuring security and compliance.
+                    Boosted employee accessibility by 40% through intuitive dashboards and streamlined workflows.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">🌟 Full Stack Developer Intern</div>
+                    <div class="experience-date">July 2025 - Aug 2025</div>
+                </div>
+                <div class="experience-company">Future Interns</div>
+                <p>Designed responsive personal portfolio and e-commerce platforms with advanced SEO and mobile-first
+                    UI. Rebranded live website using AI-powered design tools, improving user engagement by 35%.
+                    Integrated React and JavaScript-based interactivity for enhanced user experience.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">🎓 Full Stack Training</div>
+                    <div class="experience-date">June 2025</div>
+                </div>
+                <div class="experience-company">Haridwar University</div>
+                <p>Completed intensive full-stack development training covering modern web technologies. Built LMS and
+                    e-commerce systems with JWT authentication, exception handling, and Google Drive API integration.
+                    Achieved 95% training completion rate with hands-on project development.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">🏆 Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <div class="cert-icon">🎨</div>
+                    <h3>Frontend Development</h3>
+                    <p>Meta Certification</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">⚡</div>
+                    <h3>JavaScript Programming</h3>
+                    <p>Meta Certification</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">📊</div>
+                    <h3>Version Control</h3>
+                    <p>Meta Certification</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">🎯</div>
+                    <h3>Project Management</h3>
+                    <p>IBM Certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">🏅 Achievements & Recognition</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <img src="images\SIH.jpg" alt="Smart India Hackathon" class="achievement-image">
+                    <div class="achievement-icon">🥇</div>
+                    <h3>Smart India Hackathon Finalist</h3>
+                    <p>Contributed to OPD Queue Management Model project, showcasing innovation in healthcare technology
+                        solutions.</p>
+                </div>
+                <div class="achievement-card">
+                    <img src="images\techsangram.jpg" alt="Tech Sangram Hackathon" class="achievement-image">
+                    <div class="achievement-icon">🚀</div>
+                    <h3>Tech Sangram Hackathon</h3>
+                    <p>Developed Assessment AI, LMS, and AI Quiz Generator, demonstrating expertise in AI-driven
+                        educational technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workshops" class="workshops">
+        <div class="container">
+            <h2 class="section-title">🎓 Workshops & Training</h2>
+            <div class="workshops-grid">
+                <div class="workshop-card">
+                    <img src="images\workshop.jpg" alt="Comet 25 Workshop" width="200" class="workshop-image">
+                    <h3>🌟 Comet 25 Full Stack Workshop</h3>
+                    <p>Attended prestigious full-stack development workshop at IIT Roorkee focusing on cutting-edge web
+                        technologies. Gained expertise in modern development practices, microservices architecture, and
+                        industry best practices from leading tech experts and IIT faculty.</p>
+                </div>
+                <div class="workshop-card">
+                    <img src="images\training.jpg" alt="Full Stack Bootcamp" class="workshop-image">
+                    <h3>💻 Full Stack Bootcamp</h3>
+                    <p>Intensive hands-on training with React, Spring Boot, JWT Authentication, and advanced debugging
+                        techniques. Built real-world projects including LMS and e-commerce platforms with complete CRUD
+                        operations and security implementation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">📞 Let's Connect</h2>
+                <p>Ready to bring innovative solutions to your team. Let's discuss how I can contribute to your next project!</p>
+                <!-- Message Button -->
+                 <div class="contact-launch">
+                    <button id="openForm">📩 Send a Message</button>
+                </div>
+
+                <!-- Sliding Contact Form -->
+                <div id="contactPanel" class="contact-panel">
+                    <button id="closeForm" class="close-btn">✖</button>
+                    <h2>Contact Me</h2>
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="Your Name" required />
+                        <input type="email" name="email" placeholder="Your Email" required />
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:duttamadhurima258@gmail.com">Email</a>
+                    </div>
+                    <div class="contact-item">
+                        
+                       <a href="https://drive.google.com/file/d/1TiSym2CaWyJkok8FnjE79BnppbVP2eGF/view?usp=sharing"  target="_blank">📄 Resume</a>
+
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <a href="tel:+919002937982">contact</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>West Bengal, India</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Madhurima Dutta | Designed & Built with 💻 & ❤️</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init("3PS23Thmo4yVEuBhe"); // Replace with your EmailJS Public Key
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("contact_service","template_rc0g3vd", this)
+      .then(() => {
+        alert("✅ Message sent successfully!");
+        this.reset();
+        document.addEventListener("click", handleOutsideClick);
+      }, (error) => {
+        alert("❌ Failed to send message.");
+        console.error(error);
+      });
+  });
+</script>
+
+
+<script>
+  const openBtn = document.getElementById("openForm");
+  const closeBtn = document.getElementById("closeForm");
+  const panel = document.getElementById("contactPanel");
+
+  openBtn.addEventListener("click", () => {
+    panel.classList.add("show");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    panel.classList.remove("show");
+  });
+  function handleOutsideClick(e) {
+  const panel = document.getElementById("contactPanel");
+
+  if (!panel.contains(e.target)) {
+    panel.classList.remove("show");
+    document.removeEventListener("click", handleOutsideClick);
+  }
+}
+</script>
+
+    
+</body>
+
+</html>
