@@ -17,10 +17,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Vanilla Tilt (3D Card Effect) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
     <!-- Navigation -->
     <nav class="navbar">
         <a href="#" class="logo">M<span>.D</span></a>
@@ -40,9 +47,7 @@
         <div class="hero-content">
             <div class="hero-inner">
                 <div class="hero-text">
-                    <h2 class="greeting">Hello, I'm <img
-                            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4bb/512.gif" alt="Laptop"
-                            class="inline-gif"></h2>
+                    <h2 class="greeting">Hello, I'm</h2>
                     <h1 class="name">Madhurima Dutta</h1>
                     <div class="typing-container">
                         <span class="typing-text" id="typing-text"></span><span class="cursor">|</span>
@@ -329,6 +334,9 @@
             <p>Built with <i class="fas fa-heart" style="color: var(--accent-color);"></i> and clean code.</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <script src="script.js"></script>
 </body>

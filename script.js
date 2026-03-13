@@ -265,50 +265,50 @@ const formMessage = document.getElementById('form-message');
 const submitBtn = document.getElementById('submit-btn');
 const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
 
-// Initialize EmailJS (Note: User must replace 'YOUR_PUBLIC_KEY' with their actual key)
-// You can sign up for free at emailjs.com
+// Initialize EmailJS with public key
 if (typeof emailjs !== 'undefined') {
-    emailjs.init("3PS23Thmo4yVEuBhe"); // Replace this
+    emailjs.init("3PS23Thmo4yVEuBhe");
 }
 
 if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // 1. Basic Client-Side Validation
+        // Client-Side Validation
         const name = document.getElementById('user_name').value.trim();
         const email = document.getElementById('user_email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!name || !email || !message) {
-            showFormMessage('Please fill in all required fields.', 'error');
+            showFormMessage('⚠ Please fill in all required fields.', 'error');
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            showFormMessage('⚠ Please enter a valid email address.', 'error');
             return;
         }
 
-        // 2. Loading State
+        // Loading State
         submitBtn.disabled = true;
         btnText.textContent = 'Sending...';
 
-        // 3. Send via EmailJS 
-        // Note: User must replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID'
-        emailjs.sendForm('contact_service', 'template_rc0g3vd', this)
+        // Use emailjs.send() with explicit params for reliability
+        emailjs.send('contact_service', 'template_rc0g3vd', {
+            user_name: name,
+            user_email: email,
+            subject: subject || 'Portfolio Contact',
+            message: message
+        })
             .then(() => {
-                showFormMessage('Message sent successfully! I will get back to you soon.', 'success');
+                showFormMessage('✅ Message sent! I will get back to you soon.', 'success');
                 contactForm.reset();
             }, (error) => {
                 console.error('EmailJS Error:', error);
-
-                // For demonstration purposes on local, if keys are missing/invalid, 
-                // we'll show success anyway just so the UI functions, but log the real error.
-                if (error.text === "The public key is required.") {
-                    showFormMessage('Simulated Success! (Keys missing: Enter real keys in script.js)', 'success');
-                    contactForm.reset();
-                } else {
-                    showFormMessage('Oops! Something went wrong. Please try again later.', 'error');
-                }
+                showFormMessage('❌ Failed to send. Please try emailing directly.', 'error');
             })
             .finally(() => {
-                // Remove loading state
                 submitBtn.disabled = false;
                 btnText.textContent = 'Send Message';
             });
@@ -317,16 +317,83 @@ if (contactForm) {
 
 function showFormMessage(msg, type) {
     formMessage.textContent = msg;
-    formMessage.className = `form-message ${type}`; // Reset classes, add the type (success/error)
-
-    // Auto-hide after 5 seconds
+    formMessage.className = `form-message ${type}`;
     setTimeout(() => {
         formMessage.classList.add('hidden');
-    }, 5000);
+    }, 6000);
 }
 
-// --- Initialization ---
+// --- 6. Custom Cursor ---
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+
+let ringX = 0, ringY = 0;
+let dotX = 0, dotY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    dotX = e.clientX;
+    dotY = e.clientY;
+    cursorDot.style.left = dotX + 'px';
+    cursorDot.style.top = dotY + 'px';
+});
+
+// Smooth trailing ring
+function animateCursorRing() {
+    currentX += (dotX - currentX) * 0.12;
+    currentY += (dotY - currentY) * 0.12;
+    cursorRing.style.left = currentX + 'px';
+    cursorRing.style.top = currentY + 'px';
+    requestAnimationFrame(animateCursorRing);
+}
+animateCursorRing();
+
+// Hide cursor when leaving window
+document.addEventListener('mouseleave', () => {
+    cursorDot.style.opacity = '0';
+    cursorRing.style.opacity = '0';
+});
+document.addEventListener('mouseenter', () => {
+    cursorDot.style.opacity = '1';
+    cursorRing.style.opacity = '1';
+});
+
+// --- 7. Scroll Progress Bar & Back-to-Top ---
+const scrollProgress = document.getElementById('scroll-progress');
+const backToTop = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    // Scroll progress
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = progress + '%';
+
+    // Back-to-top visibility
+    if (scrollTop > 400) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- 8. 3D Tilt Effect on Cards ---
 document.addEventListener('DOMContentLoaded', () => {
+    if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll('.project-card, .bento-item'), {
+            max: 8,           // Max tilt angle
+            speed: 400,       // Speed of the effect
+            glare: true,      // Enable the glare effect
+            'max-glare': 0.15, // Max opacity of glare (0-1)
+            scale: 1.02,      // Slight scale up on hover
+        });
+    }
+
+    // Typing effect init
     if (roles.length) setTimeout(type, newTextDelay + 250);
     setupCanvas();
     initParticles();
