@@ -306,7 +306,9 @@ if (contactForm) {
                 contactForm.reset();
             }, (error) => {
                 console.error('EmailJS Error:', error);
-                showFormMessage('❌ Failed to send. Please try emailing directly.', 'error');
+                // Show the actual error for debugging
+                const errMsg = error?.text || error?.message || JSON.stringify(error);
+                showFormMessage(`❌ Error: ${errMsg}`, 'error');
             })
             .finally(() => {
                 submitBtn.disabled = false;
